@@ -1,0 +1,62 @@
+{
+  "name": "local-network-messenger",
+  "version": "1.0.0",
+  "description": "Local network messaging application with peer-to-peer capabilities",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder build --linux"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "simple-peer": "^9.11.1",
+    "socket.io": "^4.7.1",
+    "socket.io-client": "^4.7.1",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "electron": "25.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.localnetwork.messenger",
+    "productName": "Local Network Messenger",
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ],
+      "category": "Network"
+    },
+    "files": [
+      "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules/sqlite3/lib/binding/napi-v6-linux-x64",
+        "to": "app.asar.unpacked/node_modules/sqlite3/lib/binding/napi-v6-linux-x64",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/sqlite3/lib/binding/napi-v6-linux-x64/*"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Login</title>
+  <style>
+    /* Simple styling */
+    body { font-family: Arial, sans-serif; margin: 50px; }
+    .login-container { max-width: 300px; margin: auto; }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <input id="employee_id" type="text" placeholder="Employee Code" />
+    <input id="name" type="text" placeholder="Name" />
+    <button id="loginBtn">Login</button>
+  </div>
+  
+  <script>
+    const { ipcRenderer } = require('electron');
+    const io = require('socket.io-client');
+    const socket = io('http://localhost:3000');
+
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const employee_id = document.getElementById('employee_id').value;
+      const name = document.getElementById('name').value;
+      // Authenticate with server
+      socket.emit('authenticate', { employee_id, name });
+    });
+
+    // On successful login, open chat window (or load chat UI)
+    socket.on('auth_response', (data) => {
+      if (data.success) {
+        // Open the chat interface
+        window.location = 'index.html?employee_id=' + data.employee_id + '&name=' + data.name;
+      } else {
+        alert('Authentication failed: ' + data.error);
+      }
+    });
+  </script>
+</body>
+</html>

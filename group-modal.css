@@ -1,0 +1,98 @@
+#group-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#group-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  max-width: 90%;
+}
+
+#group-modal h2 {
+  margin: 0 0 1.5rem;
+  color: #1a1a1a;
+}
+
+#group-modal .input-group {
+  margin-bottom: 1.5rem;
+}
+
+#group-modal label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a4a4a;
+}
+
+#group-modal input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#group-modal .members-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+#group-modal .member-item {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+#group-modal .member-item:last-child {
+  border-bottom: none;
+}
+
+#group-modal .member-item input[type="checkbox"] {
+  margin-right: 0.75rem;
+  width: auto;
+}
+
+#group-modal .buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+#group-modal button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#group-modal button.cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+#group-modal button.create {
+  background: #00c853;
+  color: white;
+}
+
+#group-modal button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
